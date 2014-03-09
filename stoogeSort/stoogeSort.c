@@ -1,0 +1,59 @@
+/*
+ * C Program to Implement Stooge Sort
+ */
+#include <stdio.h>
+
+int count = 0;
+// Function Prototype
+void stoogesort(int [], int, int);
+ 
+void main()
+{
+    int b[9], i;
+ 
+    printf("Enter the values you want to sort using STOOGE SORT!!!:\n");
+    for (i = 0;i < 9;i++)
+        scanf(" %d", &b[i]);
+    stoogesort(b, 0, 8);
+    printf("sorted by stooge sort \n");
+    for (i = 0;i < 9;i++)
+    {
+        printf("%d ", b[i]);
+    }
+    printf(" numero intercambios %d\n",count);
+}
+
+
+/* Auxiliary routine: printing a vector of floats */
+void print_integer_vector( char* desc, int n, int* a, int i, int jj, int k ) {
+        int j;
+	count++;
+        //printf( "\n %s\n", desc );
+	printf("i=%d , j=%d , k=%d \n",i+1,jj+1,k);
+        for( j = 0; j < n; j++ ) printf( " %i ", a[j] );
+} 
+
+
+// Function to implement STOOGE SORT
+void stoogesort(int a[], int i, int j)
+{
+    int temp, k;
+ 
+    if (a[i] > a[j])
+    {
+        temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+	
+    }
+
+    print_integer_vector("A",9,a,i,j,k);
+
+    if ((i + 1) >= j)
+        return;
+    k = (int)((j - i + 1) / 3);
+    
+    stoogesort(a, i, j - k);
+    stoogesort(a, i + k, j);
+    stoogesort(a, i, j - k);
+}
